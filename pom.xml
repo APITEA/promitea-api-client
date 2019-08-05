@@ -6,28 +6,28 @@
     <packaging>jar</packaging>
     <name>promitea-java-client</name>
     <version>1.0.0</version>
-    <url>https://github.com/swagger-api/swagger-codegen</url>
-    <description>Swagger Java</description>
+    <url>https://github.com/APITEA/promitea-api-client</url>
+    <description>Promitea java API client</description>
     <scm>
-        <connection>scm:git:git@github.com:swagger-api/swagger-codegen.git</connection>
-        <developerConnection>scm:git:git@github.com:swagger-api/swagger-codegen.git</developerConnection>
-        <url>https://github.com/swagger-api/swagger-codegen</url>
+        <connection>scm:git:git@github.com/APITEA/promitea-api-client.git</connection>
+        <developerConnection>scm:git:git@github.com/APITEA/promitea-api-client.git</developerConnection>
+        <url>https://github.com/APITEA/promitea-api-client</url>
     </scm>
 
     <licenses>
         <license>
-            <name>Unlicense</name>
-            <url>http://unlicense.org</url>
+            <name>APITEA Technologies license</name>
+            <url>https://apitea.com</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
 
     <developers>
         <developer>
-            <name>Swagger</name>
-            <email>apiteam@swagger.io</email>
-            <organization>Swagger</organization>
-            <organizationUrl>http://swagger.io</organizationUrl>
+            <name>Pavlina Rolincova</name>
+            <email>rolincova@apitea.com</email>
+            <organization>APITEA Technologies s.r.o.</organization>
+            <organizationUrl>http://apitea.com</organizationUrl>
         </developer>
     </developers>
 
