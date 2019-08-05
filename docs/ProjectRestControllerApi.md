@@ -20,11 +20,11 @@ Returns project detail
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.ProjectRestControllerApi;
+//import com.promitea.client.ApiClient;
+//import com.promitea.client.ApiException;
+//import com.promitea.client.Configuration;
+//import com.promitea.client.auth.*;
+//import com.promitea.client.api.ProjectRestControllerApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -75,11 +75,11 @@ Returns project header list from Promitea
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.ProjectRestControllerApi;
+//import com.promitea.client.ApiClient;
+//import com.promitea.client.ApiException;
+//import com.promitea.client.Configuration;
+//import com.promitea.client.auth.*;
+//import com.promitea.client.api.ProjectRestControllerApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -126,11 +126,11 @@ Returns project detail
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.ProjectRestControllerApi;
+//import com.promitea.client.ApiClient;
+//import com.promitea.client.ApiException;
+//import com.promitea.client.Configuration;
+//import com.promitea.client.auth.*;
+//import com.promitea.client.api.ProjectRestControllerApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
