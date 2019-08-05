@@ -1,6 +1,14 @@
 # promitea-api-client
 Promitea java API client for integration other system with Promitea.
 
+[![Build Status](https://travis-ci.org/APITEA/promitea-api-client.svg?branch=master)](https://travis-ci.org/APITEA/promitea-api-client)
+[![codecov](https://codecov.io/gh/APITEA/promitea-api-client/branch/master/graph/badge.svg)](https://codecov.io/gh/APITEA/promitea-api-client)
+[![License](https://img.shields.io/github/license/APITEA/promitea-api-client.svg)](https://github.com/APITEA/promitea-api-client/blob/master/LICENSE)
+[![Maven Version](https://img.shields.io/nexus/s/https/repo1.maven.org/maven2/com.influxdb/promitea-api-client.svg)](https://repo1.maven.org/maven2/com/influxdb/)
+[![GitHub issues](https://img.shields.io/github/issues-raw/APITEA/promitea-api-client.svg)](https://github.com/APITEA/promitea-api-client/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/APITEA/promitea-api-client.svg)](https://github.com/APITEA/promitea-api-client/pulls)
+
+
 ## About Promitea
 
 Promitea is a online platform for your electronic procurement
