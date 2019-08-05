@@ -1,0 +1,42 @@
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# exclude jar for gradle wrapper
+!gradle/wrapper/*.jar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# build files
+**/target
+target
+.gradle
+build
+
+/target
+/.settings
+/.classpath
+/.project
+/.resourceCache
+
+# Intellij Idea #
+*.iml
+*.ipr
+/.idea
+
+# Maven files #
+tree.txt
+/tmp
+/.externalToolBuilders/
+
+# Developer files #
+JBTest.java
+*.patch
+
