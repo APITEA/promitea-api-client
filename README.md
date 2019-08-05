@@ -11,6 +11,23 @@ e-Sourcing makes requests, projects, and auctions easier. Based on selected crit
 
 With help from Purchase to Pay (P2P) you automate the operative purchasing process and lower costs.
 
+### Prerequisites
+
+API key has to be prepared in testing environment and assigned to a testing user. 
+
+## Running the tests
+
+There is prepared several tests for checking Promitea API. You can run them through maven command test.
+
+```
+mvn test
+```
+
+## Built With
+
+* [Maven](https://maven.apache.org/) - Dependency Management
+
 ## Authors
 
 * **Pavlina Rolincova** - *Initial work* - [APITEA Technologies s.r.o.](https://github.com/APITEA)
+* **Marek Matus** - *Initial work* - [APITEA Technologies s.r.o.](https://github.com/APITEA)
