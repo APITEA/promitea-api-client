@@ -178,6 +178,34 @@ public class ProjectRestControllerApiTest
     }
 
     /**
+     * Fail creation of the new project in Promitea because a user which has no permission to create one
+     * <p>
+     */
+    @Test
+    public void addProjectFailManagerUsingPOSTTest()
+    {
+        Project projectModel = new Project();
+
+        projectModel.setName(getText("Test - " + startTime + "_2"));
+
+        User manager = new User();
+        manager.setEmail("observer1@apitea.com");
+        projectModel.setManager(manager);
+
+        try
+        {
+            api.addProjectUsingPOST(projectModel);
+
+            Assert.fail();
+        }
+        catch (ApiException e)
+        {
+            Assert.assertEquals(500, e.getCode());
+            Assert.assertTrue(e.getResponseBody().contains("has no permission to create project"));
+        }
+    }
+
+    /**
      * Get project list from Promitea
      * <p>
      * Returns project header list from Promitea
