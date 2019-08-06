@@ -3,15 +3,12 @@
 #
 language: java
 jdk:
-  - oraclejdk8
-  - oraclejdk7
+  - openjdk8
 before_install:
   # ensure gradlew has proper permission
-  - chmod a+x ./gradlew
+  # - chmod a+x ./gradlew
 script:
-  # test using maven
-  - mvn test
-  # uncomment below to test using gradle
-  # - gradle test
-  # uncomment below to test using sbt 
-  # - sbt test
+  - mvn -B -U clean install -Dmaven.javadoc.skip=true -Dmaven.dokka.skip=true
+  - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
+after_failure:
+  - cat target/surefire-reports/*.txt
