@@ -223,6 +223,31 @@ public class ProjectRestControllerApiTest
     }
 
     /**
+     * Fail creation of the new project in Promitea because a type which is not allowed for organization
+     * <p>
+     */
+    @Test
+    public void addProjectFailProjectTypeUsingPOSTTest()
+    {
+        Project projectModel = new Project();
+
+        projectModel.setName(getText("Test - " + startTime + "_3"));
+        projectModel.setProjectType("eVergabeRequest");
+
+        try
+        {
+            api.addProjectUsingPOST(projectModel);
+
+            Assert.fail();
+        }
+        catch (ApiException e)
+        {
+            Assert.assertEquals(500, e.getCode());
+            Assert.assertTrue(e.getResponseBody().contains("not available for organization"));
+        }
+    }
+
+    /**
      * Get project list from Promitea
      * <p>
      * Returns project header list from Promitea
