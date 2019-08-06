@@ -22,6 +22,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import com.promitea.client.StringUtil;
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import org.junit.Assert;
 import org.junit.Before;
@@ -104,7 +105,7 @@ public class ProjectRestControllerApiTest
         item1.setName(getText("Item 1"));
         item1.addAdditionalNamesItem(getText("Item 1", "en"));
         item1.setDescription(getText("item 1 description"));
-        item1.setMeasureUnit("pcs");
+        item1.setMeasureUnit("bag");
         item1.setQuantity(new BigDecimal(10));
         items.add(item1);
 
@@ -113,7 +114,7 @@ public class ProjectRestControllerApiTest
         item2.addAdditionalNamesItem(getText("Item 2", "en"));
         item2.setDescription(getText("item 2 description"));
         item2.setMeasureUnit("pcs");
-        item2.setQuantity(new BigDecimal(10));
+        item2.setQuantity(new BigDecimal(11));
         items.add(item2);
 
         Item group = new Item();
@@ -127,7 +128,7 @@ public class ProjectRestControllerApiTest
         subItem.addAdditionalNamesItem(getText("sub item", "en"));
         subItem.setDescription(getText("sub item description"));
         subItem.setMeasureUnit("pcs");
-        subItem.setQuantity(new BigDecimal(10));
+        subItem.setQuantity(new BigDecimal(12));
         group.setItems(Collections.singletonList(subItem));
 
         phase.setItems(items);
@@ -182,10 +183,23 @@ public class ProjectRestControllerApiTest
                 "Item 1".equals(i.getName().getValue())).findFirst().orElse(null);
 
         Assert.assertNotNull(resultItem1);
+        Assert.assertEquals(new BigDecimal(10), resultItem1.getQuantity());
+        Assert.assertEquals("item 1 description", resultItem1.getDescription().getValue());
+        Assert.assertEquals("bag", resultItem1.getMeasureUnit().toLowerCase());
         Assert.assertEquals(1, resultItem1.getDocuments().size());
         Assert.assertEquals("doc2", resultItem1.getDocuments().get(0).getName());
         Assert.assertEquals("url", resultItem1.getDocuments().get(0).getMimeType());
         Assert.assertEquals("google.com", resultItem1.getDocuments().get(0).getData());
+
+        Item resultGroup = resultItems.stream().filter(i ->
+                "Group".equals(i.getName().getValue())).findFirst().orElse(null);
+
+        Assert.assertNotNull(resultGroup);
+        Assert.assertEquals(1, resultGroup.getItems().size());
+        Assert.assertEquals("Sub item", resultGroup.getItems().get(0).getName().getValue());
+        Assert.assertEquals(new BigDecimal(12), resultGroup.getItems().get(0).getQuantity());
+        Assert.assertEquals("sub item description", resultGroup.getItems().get(0).getDescription().getValue());
+        Assert.assertEquals("pcs", resultGroup.getItems().get(0).getMeasureUnit());
 
         Assert.assertEquals(2, resultPhase.getDocuments().size());
 
