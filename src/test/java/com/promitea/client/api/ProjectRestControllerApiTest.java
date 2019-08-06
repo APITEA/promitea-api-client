@@ -60,6 +60,23 @@ public class ProjectRestControllerApiTest
         startTime = new Date().toString();
     }
 
+    @Test
+    public void authorizationFailed()
+    {
+        api.getApiClient().setApiKey("0");
+
+        try
+        {
+            api.listUsingGET();
+
+            Assert.fail();
+        }
+        catch (ApiException e)
+        {
+            Assert.assertEquals(403, e.getCode());
+        }
+    }
+
     /**
      * Creates the new project in Promitea
      * <p>
