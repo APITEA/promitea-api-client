@@ -166,6 +166,10 @@ public class ProjectRestControllerApiTest
         Assert.assertNotNull(response);
         Assert.assertNotNull(response.getId());
         Assert.assertEquals("Test - " + startTime, response.getName().getValue());
+        Assert.assertEquals("tender", response.getProjectType());
+        Assert.assertNotNull(response.getManager());
+        Assert.assertEquals("manager1@apitea.com", response.getManager().getEmail());
+
         Assert.assertEquals(1, response.getPhases().size());
 
         Phase resultPhase = response.getPhases().get(0);
