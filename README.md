@@ -27,6 +27,15 @@ mvn test
 
 * [Maven](https://maven.apache.org/) - Dependency Management
 
+## Example
+
+```java
+ProjectRestControllerApi api = new ProjectRestControllerApi();
+api.getApiClient().setApiKey("YOUR_KEY");
+
+List<ProjectBasicInfo> response = api.listUsingGET();
+```
+
 ## Authors
 
 * **Pavlina Rolincova** - *Initial work* - [APITEA Technologies s.r.o.](https://github.com/APITEA)

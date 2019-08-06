@@ -99,13 +99,13 @@ public class ProjectRestControllerApiTest
 
         Item group = new Item();
         group.setName(getText("Group"));
-        group.addAdditionalNamesItem(getText("Skupina", "cz"));
+        group.addAdditionalNamesItem(getText("Group", "en"));
         group.setDescription(getText("group description"));
         items.add(group);
 
         Item subItem = new Item();
         subItem.setName(getText("Sub item"));
-        subItem.addAdditionalNamesItem(getText("podpolozka", "cz"));
+        subItem.addAdditionalNamesItem(getText("sub item", "en"));
         subItem.setDescription(getText("sub item description"));
         subItem.setMeasureUnit("pcs");
         subItem.setQuantity(new BigDecimal(10));
@@ -177,11 +177,33 @@ public class ProjectRestControllerApiTest
     @Test
     public void showProjectUsingGETTest() throws ApiException
     {
-        Long id = 17207452L;
+        Long id = 17295332L;
         Project response = api.showProjectUsingGET(id);
 
         Assert.assertNotNull(response);
         Assert.assertEquals("Testing project", response.getName().getValue());
+    }
+
+    /**
+     * Check error when try to access to tender of another organization from Promitea
+     * <p>
+     */
+    @Test
+    public void showProjectFailUsingGETTest()
+    {
+        Long id = 17207452L;
+
+        try
+        {
+            api.showProjectUsingGET(id);
+
+            Assert.fail();
+        }
+        catch (ApiException e)
+        {
+            Assert.assertEquals(500, e.getCode());
+            Assert.assertTrue(e.getResponseBody().contains("was not found"));
+        }
     }
 
     private Text getText(String value, String language)
