@@ -37,6 +37,7 @@ import com.promitea.client.model.Text;
 import com.promitea.client.model.User;
 
 import java.math.BigDecimal;
+import java.util.stream.Collectors;
 
 /**
  * API tests for ProjectRestControllerApi
@@ -77,6 +78,7 @@ public class ProjectRestControllerApiTest
         projectModel.setManager(manager);
 
         Phase phase = new Phase();
+        phase.setCode("RFQ");
 
         // items
         List<Item> items = new ArrayList<>();
@@ -127,13 +129,15 @@ public class ProjectRestControllerApiTest
         document2.name("doc2");
         document2.setMimeType("url");
         document2.setData("google.com");
-        documents.add(document2);
+        item1.setDocuments(Collections.singletonList(document2));
 
         Document pdfDocument = new Document();
         pdfDocument.name("test-document");
         pdfDocument.setMimeType("application/pdf");
         pdfDocument.setFileName("test-document.pdf");
-        pdfDocument.setData(getDataDocument());
+
+        String data = getDataDocument();
+        pdfDocument.setData(data);
         documents.add(pdfDocument);
 
         phase.setDocuments(documents);
@@ -148,8 +152,29 @@ public class ProjectRestControllerApiTest
         Assert.assertEquals(1, response.getPhases().size());
 
         Phase resultPhase = response.getPhases().get(0);
-        Assert.assertEquals(3, resultPhase.getItems().size());
-        Assert.assertEquals(3, resultPhase.getDocuments().size());
+        Assert.assertEquals("RFQ", resultPhase.getCode());
+
+        List<Item> resultItems = resultPhase.getItems();
+        Assert.assertEquals(3, resultItems.size());
+
+        Item resultItem1 = resultItems.stream().filter(i ->
+                "Item 1".equals(i.getName().getValue())).findFirst().orElse(null);
+
+        Assert.assertNotNull(resultItem1);
+        Assert.assertEquals(1, resultItem1.getDocuments().size());
+        Assert.assertEquals("doc2", resultItem1.getDocuments().get(0).getName());
+        Assert.assertEquals("url", resultItem1.getDocuments().get(0).getMimeType());
+        Assert.assertEquals("google.com", resultItem1.getDocuments().get(0).getData());
+
+        Assert.assertEquals(2, resultPhase.getDocuments().size());
+
+        Document resultDocument = resultPhase.getDocuments().stream().filter(d ->
+                "test-document".equals(d.getName())).findFirst().orElse(null);
+
+        Assert.assertNotNull(resultDocument);
+        Assert.assertEquals("test-document.pdf", resultDocument.getFileName());
+        Assert.assertEquals("application/pdf", resultDocument.getMimeType());
+        Assert.assertEquals(data, resultDocument.getData());
     }
 
     /**
