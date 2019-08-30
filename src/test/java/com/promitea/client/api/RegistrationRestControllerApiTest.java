@@ -13,21 +13,12 @@
 
 package com.promitea.client.api;
 
-import java.util.Date;
-
 import com.promitea.client.ApiException;
 import com.promitea.client.HasApiClient;
-import com.promitea.client.StringUtil;
 import com.promitea.client.model.Organization;
-import com.promitea.client.model.User;
 import com.promitea.client.model.UserToRegister;
-import com.sun.tools.corba.se.idl.constExpr.Or;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.Ignore;
-
-import static com.promitea.client.api.ProjectRestControllerApiTest.localhost;
 
 /**
  * API tests for RegistrationRestControllerApi
