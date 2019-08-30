@@ -17,9 +17,11 @@ import java.util.Date;
 
 import com.promitea.client.ApiException;
 import com.promitea.client.HasApiClient;
+import com.promitea.client.StringUtil;
 import com.promitea.client.model.Organization;
 import com.promitea.client.model.User;
 import com.promitea.client.model.UserToRegister;
+import com.sun.tools.corba.se.idl.constExpr.Or;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,6 +47,163 @@ public class RegistrationRestControllerApiTest extends AbstractRestControllerApi
     @Test
     public void registerOrganizationUsingPOSTTest() throws ApiException
     {
+        Organization organization = createOrganization();
+
+        Organization orgResponse = api.registerOrganizationUsingPOST(organization);
+
+        Assert.assertNotNull(orgResponse);
+        Assert.assertNotNull(orgResponse.getId());
+        Assert.assertEquals(organization.getName(), orgResponse.getName());
+        Assert.assertEquals(organization.getEmail(), orgResponse.getEmail());
+        Assert.assertEquals("en", orgResponse.getLanguage());
+
+        UserToRegister userResponse = orgResponse.getUser();
+
+        Assert.assertNotNull(userResponse);
+        Assert.assertNotNull(userResponse.getId());
+        Assert.assertEquals("Api", userResponse.getFirstName());
+        Assert.assertEquals("Manager", userResponse.getLastName());
+        Assert.assertEquals(organization.getUser().getEmail(), userResponse.getEmail());
+        Assert.assertEquals("123456789", userResponse.getPhone());
+    }
+
+    /**
+     * Try to register new organisation with different user then admin
+     *
+     */
+    @Test
+    public void registerOrganizationUsingPOSTForbiddenTest()
+    {
+        api.getApiClient().setApiKey("123456789");
+
+        Organization organization = createOrganization();
+
+        postOrganizationWithFailure(organization, 403, null);
+    }
+
+    /**
+     * Try to register new organisation with wrong organisation e-mail format
+     *
+     */
+    @Test
+    public void registerOrganizationUsingPOSTWrongOrganizationMailTest()
+    {
+        api.getApiClient().setApiKey("123456789");
+
+        Organization organization = createOrganization();
+        organization.setEmail("12345");
+
+        postOrganizationWithFailure(organization, 400, "Incorrect organisation e-mail format");
+    }
+
+    /**
+     * Try to register new organisation with empty organisation name
+     *
+     */
+    @Test
+    public void registerOrganizationUsingPOSTEmptyOrganizationNameTest()
+    {
+        api.getApiClient().setApiKey("123456789");
+
+        Organization organization = createOrganization();
+        organization.setName("");
+
+        postOrganizationWithFailure(organization, 400, "Organisation name is required");
+    }
+
+    /**
+     * Try to register new organisation with wrong user e-mail format
+     *
+     */
+    @Test
+    public void registerOrganizationUsingPOSTWrongUserMailTest()
+    {
+        api.getApiClient().setApiKey("123456789");
+
+        Organization organization = createOrganization();
+        organization.getUser().setEmail("12345");
+
+        postOrganizationWithFailure(organization, 400, "Incorrect user e-mail format");
+    }
+
+    /**
+     * Try to register new organisation with empty user e-mail
+     *
+     */
+    @Test
+    public void registerOrganizationUsingPOSTEmptyUserMailTest()
+    {
+        api.getApiClient().setApiKey("123456789");
+
+        Organization organization = createOrganization();
+        organization.getUser().setEmail(null);
+
+        postOrganizationWithFailure(organization, 400, "User e-mail is required");
+    }
+
+    /**
+     * Try to register new organisation with empty user first name
+     *
+     */
+    @Test
+    public void registerOrganizationUsingPOSTEmptyUserFirstNameTest()
+    {
+        api.getApiClient().setApiKey("123456789");
+
+        Organization organization = createOrganization();
+        organization.getUser().setFirstName("");
+
+        postOrganizationWithFailure(organization, 400, "User first name is required");
+    }
+
+    /**
+     * Try to register new organisation with empty user last name
+     *
+     */
+    @Test
+    public void registerOrganizationUsingPOSTEmptyUserLastNameTest()
+    {
+        api.getApiClient().setApiKey("123456789");
+
+        Organization organization = createOrganization();
+        organization.getUser().setLastName("");
+
+        postOrganizationWithFailure(organization, 400, "User last name is required");
+    }
+
+    private void postOrganizationWithFailure(Organization organization, int code, String message)
+    {
+        try
+        {
+            Organization orgResponse = api.registerOrganizationUsingPOST(organization);
+
+            Assert.fail();
+        }
+        catch (ApiException e)
+        {
+            Assert.assertEquals(code, e.getCode());
+
+            if (message != null && !message.isEmpty())
+            {
+                Assert.assertTrue(e.getResponseBody().contains(message));
+            }
+        }
+    }
+
+    @Override
+    protected HasApiClient getApiClient()
+    {
+        return api;
+    }
+
+    @Override
+    protected String getApiKey()
+    {
+        return "987654321";
+    }
+
+    private Organization createOrganization()
+    {
         String email = "trash" + startTime + "@apitea.com";
 
         Organization organization = new Organization();
@@ -64,33 +223,6 @@ public class RegistrationRestControllerApiTest extends AbstractRestControllerApi
 
         organization.setUser(user);
 
-        Organization orgResponse = api.registerOrganizationUsingPOST(organization);
-
-        Assert.assertNotNull(orgResponse);
-        Assert.assertNotNull(orgResponse.getId());
-        Assert.assertEquals(organizationName, orgResponse.getName());
-        Assert.assertEquals(email, orgResponse.getEmail());
-        Assert.assertEquals("en", orgResponse.getLanguage());
-
-        UserToRegister userResponse = orgResponse.getUser();
-
-        Assert.assertNotNull(userResponse);
-        Assert.assertNotNull(userResponse.getId());
-        Assert.assertEquals("Api", userResponse.getFirstName());
-        Assert.assertEquals("Manager", userResponse.getLastName());
-        Assert.assertEquals(email, userResponse.getEmail());
-        Assert.assertEquals("123456789", userResponse.getPhone());
-    }
-
-    @Override
-    protected HasApiClient getApiClient()
-    {
-        return api;
-    }
-
-    @Override
-    protected String getApiKey()
-    {
-        return "987654321";
+        return organization;
     }
 }
