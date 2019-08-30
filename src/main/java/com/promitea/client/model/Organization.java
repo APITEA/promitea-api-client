@@ -28,10 +28,13 @@ import java.io.IOException;
  * Organization entity
  */
 @ApiModel(description = "Organization entity")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-08-30T05:58:32.000Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-08-30T09:33:10.349Z")
 public class Organization {
   @SerializedName("email")
   private String email = null;
+
+  @SerializedName("id")
+  private String id = null;
 
   @SerializedName("language")
   private String language = null;
@@ -58,6 +61,15 @@ public class Organization {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+   /**
+   * organisation Promitea id
+   * @return id
+  **/
+  @ApiModelProperty(value = "organisation Promitea id")
+  public String getId() {
+    return id;
   }
 
   public Organization language(String language) {
@@ -125,6 +137,7 @@ public class Organization {
     }
     Organization organization = (Organization) o;
     return Objects.equals(this.email, organization.email) &&
+        Objects.equals(this.id, organization.id) &&
         Objects.equals(this.language, organization.language) &&
         Objects.equals(this.name, organization.name) &&
         Objects.equals(this.user, organization.user);
@@ -132,7 +145,7 @@ public class Organization {
 
   @Override
   public int hashCode() {
-    return Objects.hash(email, language, name, user);
+    return Objects.hash(email, id, language, name, user);
   }
 
 
@@ -142,6 +155,7 @@ public class Organization {
     sb.append("class Organization {\n");
     
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    language: ").append(toIndentedString(language)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    user: ").append(toIndentedString(user)).append("\n");

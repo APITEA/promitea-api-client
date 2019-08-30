@@ -13,6 +13,7 @@
 
 package com.promitea.client.api;
 
+import com.promitea.client.HasApiClient;
 import com.promitea.client.model.Project;
 import com.promitea.client.ApiCallback;
 import com.promitea.client.ApiClient;
@@ -36,7 +37,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ProjectRestControllerApi {
+public class ProjectRestControllerApi implements HasApiClient
+{
     private ApiClient apiClient;
 
     public ProjectRestControllerApi() {

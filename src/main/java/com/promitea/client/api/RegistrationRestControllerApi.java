@@ -14,19 +14,18 @@
 package com.promitea.client.api;
 
 import com.google.gson.reflect.TypeToken;
-
-import java.io.IOException;
-
-
 import com.promitea.client.ApiCallback;
 import com.promitea.client.ApiClient;
 import com.promitea.client.ApiException;
 import com.promitea.client.ApiResponse;
 import com.promitea.client.Configuration;
+import com.promitea.client.HasApiClient;
 import com.promitea.client.Pair;
 import com.promitea.client.ProgressRequestBody;
 import com.promitea.client.ProgressResponseBody;
 import com.promitea.client.model.Organization;
+
+import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -34,7 +33,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RegistrationRestControllerApi {
+public class RegistrationRestControllerApi implements HasApiClient
+{
     private ApiClient apiClient;
 
     public RegistrationRestControllerApi() {

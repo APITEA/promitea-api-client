@@ -28,13 +28,16 @@ import java.io.IOException;
  * User entity
  */
 @ApiModel(description = "User entity")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-08-30T05:58:32.000Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-08-30T09:33:10.349Z")
 public class UserToRegister {
   @SerializedName("email")
   private String email = null;
 
   @SerializedName("firstName")
   private String firstName = null;
+
+  @SerializedName("id")
+  private String id = null;
 
   @SerializedName("lastName")
   private String lastName = null;
@@ -76,6 +79,15 @@ public class UserToRegister {
 
   public void setFirstName(String firstName) {
     this.firstName = firstName;
+  }
+
+   /**
+   * user Promitea id
+   * @return id
+  **/
+  @ApiModelProperty(value = "user Promitea id")
+  public String getId() {
+    return id;
   }
 
   public UserToRegister lastName(String lastName) {
@@ -126,13 +138,14 @@ public class UserToRegister {
     UserToRegister userToRegister = (UserToRegister) o;
     return Objects.equals(this.email, userToRegister.email) &&
         Objects.equals(this.firstName, userToRegister.firstName) &&
+        Objects.equals(this.id, userToRegister.id) &&
         Objects.equals(this.lastName, userToRegister.lastName) &&
         Objects.equals(this.phone, userToRegister.phone);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(email, firstName, lastName, phone);
+    return Objects.hash(email, firstName, id, lastName, phone);
   }
 
 
@@ -143,6 +156,7 @@ public class UserToRegister {
     
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
     sb.append("}");

@@ -22,6 +22,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import com.promitea.client.HasApiClient;
 import com.promitea.client.StringUtil;
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import org.junit.Assert;
@@ -40,26 +41,14 @@ import com.promitea.client.model.User;
 import java.math.BigDecimal;
 import java.util.stream.Collectors;
 
+import static com.promitea.client.api.AbstractRestControllerApiTest.demo;
+
 /**
  * API tests for ProjectRestControllerApi
  */
-public class ProjectRestControllerApiTest
+public class ProjectRestControllerApiTest extends AbstractRestControllerApiTest
 {
-    private final static String localhost = "http:localhost:8080";
-    private final static String demo = "https://demo.promitea.com";
-
     private final ProjectRestControllerApi api = new ProjectRestControllerApi();
-
-    private String startTime;
-
-    @Before
-    public void setApi()
-    {
-        api.getApiClient().setBasePath(demo + "/api");
-        api.getApiClient().setApiKey("123456789");
-
-        startTime = new Date().toString();
-    }
 
     @Test
     public void authorizationFailed()
@@ -341,5 +330,17 @@ public class ProjectRestControllerApiTest
         inputStream.read(bytes, 0, bytes.length);
         inputStream.close();
         return Base64.encode(bytes);
+    }
+
+    @Override
+    protected HasApiClient getApiClient()
+    {
+        return api;
+    }
+
+    @Override
+    protected String getApiKey()
+    {
+        return "123456789";
     }
 }
