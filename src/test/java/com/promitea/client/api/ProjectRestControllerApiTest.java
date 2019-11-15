@@ -17,19 +17,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
-import com.promitea.client.HasApiClient;
-import com.promitea.client.StringUtil;
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
 import com.promitea.client.ApiException;
+import com.promitea.client.HasApiClient;
 import com.promitea.client.model.Document;
 import com.promitea.client.model.Item;
 import com.promitea.client.model.Phase;
@@ -37,11 +31,12 @@ import com.promitea.client.model.Project;
 import com.promitea.client.model.ProjectBasicInfo;
 import com.promitea.client.model.Text;
 import com.promitea.client.model.User;
-
-import java.math.BigDecimal;
-import java.util.stream.Collectors;
-
-import static com.promitea.client.api.AbstractRestControllerApiTest.demo;
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+import org.junit.Assert;
+import org.junit.Test;
+import org.threeten.bp.Instant;
+import org.threeten.bp.OffsetDateTime;
+import org.threeten.bp.ZoneId;
 
 /**
  * API tests for ProjectRestControllerApi
@@ -80,12 +75,15 @@ public class ProjectRestControllerApiTest extends AbstractRestControllerApiTest
         Project projectModel = new Project();
 
         projectModel.setName(getText("Test - " + startTime));
+        projectModel.setExternalId("123");
 
         User manager = new User();
         projectModel.setManager(manager);
 
         Phase phase = new Phase();
         phase.setCode("RFQ");
+
+        OffsetDateTime deliveryDate = OffsetDateTime.ofInstant(Instant.now(), ZoneId.of("UTC"));
 
         // items
         List<Item> items = new ArrayList<>();
@@ -96,6 +94,7 @@ public class ProjectRestControllerApiTest extends AbstractRestControllerApiTest
         item1.setDescription(getText("item 1 description"));
         item1.setMeasureUnit("bag");
         item1.setQuantity(new BigDecimal(10));
+        item1.setDeliveryDate(deliveryDate);
         items.add(item1);
 
         Item item2 = new Item();
@@ -157,6 +156,7 @@ public class ProjectRestControllerApiTest extends AbstractRestControllerApiTest
         Assert.assertNotNull(response.getId());
         Assert.assertEquals("Test - " + startTime, response.getName().getValue());
         Assert.assertEquals("tender", response.getProjectType());
+        Assert.assertEquals("123", response.getExternalId());
         Assert.assertNotNull(response.getManager());
         Assert.assertEquals("manager1@apitea.com", response.getManager().getEmail());
 
@@ -179,6 +179,7 @@ public class ProjectRestControllerApiTest extends AbstractRestControllerApiTest
         Assert.assertEquals("doc2", resultItem1.getDocuments().get(0).getName());
         Assert.assertEquals("url", resultItem1.getDocuments().get(0).getMimeType());
         Assert.assertEquals("google.com", resultItem1.getDocuments().get(0).getData());
+        Assert.assertEquals(deliveryDate, resultItem1.getDeliveryDate());
 
         Item resultGroup = resultItems.stream().filter(i ->
                 "Group".equals(i.getName().getValue())).findFirst().orElse(null);

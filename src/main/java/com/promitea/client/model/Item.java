@@ -13,24 +13,27 @@
 
 package com.promitea.client.model;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import org.threeten.bp.OffsetDateTime;
 
 /**
  * An item entity
  */
 @ApiModel(description = "An item entity")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-08-05T07:13:22.864Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-11-13T07:34:05.936Z")
 public class Item {
   @SerializedName("additionalNames")
   private List<Text> additionalNames = null;
+
+  @SerializedName("deliveryDate")
+  private OffsetDateTime deliveryDate = null;
 
   @SerializedName("description")
   private Text description = null;
@@ -43,6 +46,9 @@ public class Item {
 
   @SerializedName("items")
   private List<Item> items = null;
+
+  @SerializedName("manufacturerId")
+  private String manufacturerId = null;
 
   @SerializedName("measureUnit")
   private String measureUnit = null;
@@ -79,16 +85,34 @@ public class Item {
     this.additionalNames = additionalNames;
   }
 
+  public Item deliveryDate(OffsetDateTime deliveryDate) {
+    this.deliveryDate = deliveryDate;
+    return this;
+  }
+
+   /**
+   * delivery date
+   * @return deliveryDate
+  **/
+  @ApiModelProperty(value = "delivery date")
+  public OffsetDateTime getDeliveryDate() {
+    return deliveryDate;
+  }
+
+  public void setDeliveryDate(OffsetDateTime deliveryDate) {
+    this.deliveryDate = deliveryDate;
+  }
+
   public Item description(Text description) {
     this.description = description;
     return this;
   }
 
    /**
-   * item name
+   * item description
    * @return description
   **/
-  @ApiModelProperty(required = true, value = "item name")
+  @ApiModelProperty(value = "item description")
   public Text getDescription() {
     return description;
   }
@@ -167,6 +191,24 @@ public class Item {
     this.items = items;
   }
 
+  public Item manufacturerId(String manufacturerId) {
+    this.manufacturerId = manufacturerId;
+    return this;
+  }
+
+   /**
+   * manufactured id
+   * @return manufacturerId
+  **/
+  @ApiModelProperty(value = "manufactured id")
+  public String getManufacturerId() {
+    return manufacturerId;
+  }
+
+  public void setManufacturerId(String manufacturerId) {
+    this.manufacturerId = manufacturerId;
+  }
+
   public Item measureUnit(String measureUnit) {
     this.measureUnit = measureUnit;
     return this;
@@ -232,10 +274,12 @@ public class Item {
     }
     Item item = (Item) o;
     return Objects.equals(this.additionalNames, item.additionalNames) &&
+        Objects.equals(this.deliveryDate, item.deliveryDate) &&
         Objects.equals(this.description, item.description) &&
         Objects.equals(this.documents, item.documents) &&
         Objects.equals(this.id, item.id) &&
         Objects.equals(this.items, item.items) &&
+        Objects.equals(this.manufacturerId, item.manufacturerId) &&
         Objects.equals(this.measureUnit, item.measureUnit) &&
         Objects.equals(this.name, item.name) &&
         Objects.equals(this.quantity, item.quantity);
@@ -243,7 +287,7 @@ public class Item {
 
   @Override
   public int hashCode() {
-    return Objects.hash(additionalNames, description, documents, id, items, measureUnit, name, quantity);
+    return Objects.hash(additionalNames, deliveryDate, description, documents, id, items, manufacturerId, measureUnit, name, quantity);
   }
 
 
@@ -253,10 +297,12 @@ public class Item {
     sb.append("class Item {\n");
     
     sb.append("    additionalNames: ").append(toIndentedString(additionalNames)).append("\n");
+    sb.append("    deliveryDate: ").append(toIndentedString(deliveryDate)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    documents: ").append(toIndentedString(documents)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
+    sb.append("    manufacturerId: ").append(toIndentedString(manufacturerId)).append("\n");
     sb.append("    measureUnit: ").append(toIndentedString(measureUnit)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");

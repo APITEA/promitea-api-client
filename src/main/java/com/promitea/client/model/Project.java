@@ -13,26 +13,28 @@
 
 package com.promitea.client.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * A project entity
  */
 @ApiModel(description = "A project entity")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-08-05T07:13:22.864Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-11-13T07:34:05.936Z")
 public class Project {
   @SerializedName("additionalNames")
   private List<Text> additionalNames = null;
 
   @SerializedName("description")
   private Text description = null;
+
+  @SerializedName("externalId")
+  private String externalId = null;
 
   @SerializedName("id")
   private String id = null;
@@ -96,6 +98,24 @@ public class Project {
     this.description = description;
   }
 
+  public Project externalId(String externalId) {
+    this.externalId = externalId;
+    return this;
+  }
+
+   /**
+   * project external id
+   * @return externalId
+  **/
+  @ApiModelProperty(value = "project external id")
+  public String getExternalId() {
+    return externalId;
+  }
+
+  public void setExternalId(String externalId) {
+    this.externalId = externalId;
+  }
+
   public Project id(String id) {
     this.id = id;
     return this;
@@ -141,7 +161,7 @@ public class Project {
    * project name
    * @return name
   **/
-  @ApiModelProperty(value = "project name")
+  @ApiModelProperty(required = true, value = "project name")
   public Text getName() {
     return name;
   }
@@ -224,6 +244,7 @@ public class Project {
     Project project = (Project) o;
     return Objects.equals(this.additionalNames, project.additionalNames) &&
         Objects.equals(this.description, project.description) &&
+        Objects.equals(this.externalId, project.externalId) &&
         Objects.equals(this.id, project.id) &&
         Objects.equals(this.manager, project.manager) &&
         Objects.equals(this.name, project.name) &&
@@ -234,7 +255,7 @@ public class Project {
 
   @Override
   public int hashCode() {
-    return Objects.hash(additionalNames, description, id, manager, name, phases, projectType, templateCode);
+    return Objects.hash(additionalNames, description, externalId, id, manager, name, phases, projectType, templateCode);
   }
 
 
@@ -245,6 +266,7 @@ public class Project {
     
     sb.append("    additionalNames: ").append(toIndentedString(additionalNames)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    externalId: ").append(toIndentedString(externalId)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    manager: ").append(toIndentedString(manager)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
