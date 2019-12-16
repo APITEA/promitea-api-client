@@ -13,29 +13,25 @@
 
 package com.promitea.client.api;
 
-import com.promitea.client.HasApiClient;
-import com.promitea.client.model.Project;
-import com.promitea.client.ApiCallback;
-import com.promitea.client.ApiClient;
-import com.promitea.client.ApiException;
-import com.promitea.client.ApiResponse;
-import com.promitea.client.Configuration;
-import com.promitea.client.Pair;
-import com.promitea.client.ProgressRequestBody;
-import com.promitea.client.ProgressResponseBody;
-
-import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
-
-
-import com.promitea.client.model.ProjectBasicInfo;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.google.gson.reflect.TypeToken;
+import com.promitea.client.ApiCallback;
+import com.promitea.client.ApiClient;
+import com.promitea.client.ApiException;
+import com.promitea.client.ApiResponse;
+import com.promitea.client.Configuration;
+import com.promitea.client.HasApiClient;
+import com.promitea.client.Pair;
+import com.promitea.client.ProgressRequestBody;
+import com.promitea.client.ProgressResponseBody;
+import com.promitea.client.model.Project;
+import com.promitea.client.model.ProjectBasicInfo;
 
 public class ProjectRestControllerApi implements HasApiClient
 {
@@ -65,7 +61,8 @@ public class ProjectRestControllerApi implements HasApiClient
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call addProjectUsingPOSTCall(Project projectModel, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call addProjectUsingPOSTCall(Project projectModel, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException
+    {
         Object localVarPostBody = projectModel;
 
         // create path and map variables
@@ -79,13 +76,13 @@ public class ProjectRestControllerApi implements HasApiClient
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "*/*"
+                "application/xml", "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/xml", "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -96,8 +93,8 @@ public class ProjectRestControllerApi implements HasApiClient
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -108,12 +105,12 @@ public class ProjectRestControllerApi implements HasApiClient
 
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call addProjectUsingPOSTValidateBeforeCall(Project projectModel, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
         // verify the required parameter 'projectModel' is set
         if (projectModel == null) {
             throw new ApiException("Missing the required parameter 'projectModel' when calling addProjectUsingPOST(Async)");
         }
-        
+
 
         com.squareup.okhttp.Call call = addProjectUsingPOSTCall(projectModel, progressListener, progressRequestListener);
         return call;
@@ -200,13 +197,13 @@ public class ProjectRestControllerApi implements HasApiClient
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "*/*"
+                "*/*"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -217,8 +214,8 @@ public class ProjectRestControllerApi implements HasApiClient
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -229,7 +226,7 @@ public class ProjectRestControllerApi implements HasApiClient
 
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call listUsingGETValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
 
         com.squareup.okhttp.Call call = listUsingGETCall(progressListener, progressRequestListener);
         return call;
@@ -305,7 +302,7 @@ public class ProjectRestControllerApi implements HasApiClient
 
         // create path and map variables
         String localVarPath = "/project/{id}"
-            .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
+                .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -315,13 +312,13 @@ public class ProjectRestControllerApi implements HasApiClient
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "*/*"
+                "application/xml", "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -332,8 +329,8 @@ public class ProjectRestControllerApi implements HasApiClient
                 public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
@@ -344,12 +341,12 @@ public class ProjectRestControllerApi implements HasApiClient
 
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call showProjectUsingGETValidateBeforeCall(Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling showProjectUsingGET(Async)");
         }
-        
+
 
         com.squareup.okhttp.Call call = showProjectUsingGETCall(id, progressListener, progressRequestListener);
         return call;
