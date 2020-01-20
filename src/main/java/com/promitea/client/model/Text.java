@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Localized text
  */
 @ApiModel(description = "Localized text")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-08-05T07:13:22.864Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-20T13:25:47.817Z")
 public class Text {
   @SerializedName("language")
   private String language = null;
@@ -40,7 +40,7 @@ public class Text {
    * language iso code
    * @return language
   **/
-  @ApiModelProperty(value = "language iso code")
+  @ApiModelProperty(example = "en", value = "language iso code")
   public String getLanguage() {
     return language;
   }
@@ -58,7 +58,7 @@ public class Text {
    * text value
    * @return value
   **/
-  @ApiModelProperty(value = "text value")
+  @ApiModelProperty(example = "name", value = "text value")
   public String getValue() {
     return value;
   }

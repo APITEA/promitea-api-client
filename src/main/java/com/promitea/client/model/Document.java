@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiModelProperty;
  * A document entity
  */
 @ApiModel(description = "A document entity")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-08-05T07:13:22.864Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-20T13:25:47.817Z")
 public class Document {
   @SerializedName("data")
   private String data = null;
@@ -49,7 +49,7 @@ public class Document {
    * document data
    * @return data
   **/
-  @ApiModelProperty(value = "document data")
+  @ApiModelProperty(example = "document text", value = "document data")
   public String getData() {
     return data;
   }
@@ -67,7 +67,7 @@ public class Document {
    * document file name
    * @return fileName
   **/
-  @ApiModelProperty(value = "document file name")
+  @ApiModelProperty(example = "document.txt", value = "document file name")
   public String getFileName() {
     return fileName;
   }
@@ -85,7 +85,7 @@ public class Document {
    * document mime type
    * @return mimeType
   **/
-  @ApiModelProperty(value = "document mime type")
+  @ApiModelProperty(example = "text", value = "document mime type")
   public String getMimeType() {
     return mimeType;
   }
@@ -103,7 +103,7 @@ public class Document {
    * document name
    * @return name
   **/
-  @ApiModelProperty(required = true, value = "document name")
+  @ApiModelProperty(example = "Document", required = true, value = "document name")
   public String getName() {
     return name;
   }
@@ -121,7 +121,7 @@ public class Document {
    * document type
    * @return type
   **/
-  @ApiModelProperty(value = "document type")
+  @ApiModelProperty(example = "text", value = "document type")
   public String getType() {
     return type;
   }

@@ -13,20 +13,19 @@
 
 package com.promitea.client.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Project phase entity
  */
 @ApiModel(description = "Project phase entity")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-08-05T07:13:22.864Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-20T13:25:47.817Z")
 public class Phase {
   @SerializedName("code")
   private String code = null;
@@ -37,9 +36,6 @@ public class Phase {
   @SerializedName("items")
   private List<Item> items = null;
 
-  @SerializedName("phaseId")
-  private String phaseId = null;
-
   public Phase code(String code) {
     this.code = code;
     return this;
@@ -49,7 +45,7 @@ public class Phase {
    * phase type
    * @return code
   **/
-  @ApiModelProperty(value = "phase type")
+  @ApiModelProperty(example = "RFQ", value = "phase type")
   public String getCode() {
     return code;
   }
@@ -110,24 +106,6 @@ public class Phase {
     this.items = items;
   }
 
-  public Phase phaseId(String phaseId) {
-    this.phaseId = phaseId;
-    return this;
-  }
-
-   /**
-   * phase id
-   * @return phaseId
-  **/
-  @ApiModelProperty(value = "phase id")
-  public String getPhaseId() {
-    return phaseId;
-  }
-
-  public void setPhaseId(String phaseId) {
-    this.phaseId = phaseId;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -140,13 +118,12 @@ public class Phase {
     Phase phase = (Phase) o;
     return Objects.equals(this.code, phase.code) &&
         Objects.equals(this.documents, phase.documents) &&
-        Objects.equals(this.items, phase.items) &&
-        Objects.equals(this.phaseId, phase.phaseId);
+        Objects.equals(this.items, phase.items);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, documents, items, phaseId);
+    return Objects.hash(code, documents, items);
   }
 
 
@@ -158,7 +135,6 @@ public class Phase {
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    documents: ").append(toIndentedString(documents)).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
-    sb.append("    phaseId: ").append(toIndentedString(phaseId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

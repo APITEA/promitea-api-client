@@ -18,8 +18,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import com.promitea.client.ApiException;
@@ -34,9 +36,6 @@ import com.promitea.client.model.User;
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import org.junit.Assert;
 import org.junit.Test;
-import org.threeten.bp.Instant;
-import org.threeten.bp.OffsetDateTime;
-import org.threeten.bp.ZoneId;
 
 /**
  * API tests for ProjectRestControllerApi
@@ -83,7 +82,8 @@ public class ProjectRestControllerApiTest extends AbstractRestControllerApiTest
         Phase phase = new Phase();
         phase.setCode("RFQ");
 
-        OffsetDateTime deliveryDate = OffsetDateTime.ofInstant(Instant.now(), ZoneId.of("UTC"));
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+        String deliveryDate = ft.format(new Date());
 
         // items
         List<Item> items = new ArrayList<>();
@@ -153,7 +153,6 @@ public class ProjectRestControllerApiTest extends AbstractRestControllerApiTest
         Project response = api.addProjectUsingPOST(projectModel);
 
         Assert.assertNotNull(response);
-        Assert.assertNotNull(response.getId());
         Assert.assertEquals("Test - " + startTime, response.getName().getValue());
         Assert.assertEquals("tender", response.getProjectType());
         Assert.assertEquals("123", response.getExternalId());

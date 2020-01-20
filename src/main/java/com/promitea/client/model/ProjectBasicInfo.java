@@ -13,26 +13,28 @@
 
 package com.promitea.client.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * A basic info project entity
  */
 @ApiModel(description = "A basic info project entity")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-08-05T07:13:22.864Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-20T13:25:47.817Z")
 public class ProjectBasicInfo {
   @SerializedName("additionalNames")
   private List<Text> additionalNames = null;
 
-  @SerializedName("id")
-  private String id = null;
+  @SerializedName("description")
+  private Text description = null;
+
+  @SerializedName("externalId")
+  private String externalId = null;
 
   @SerializedName("manager")
   private User manager = null;
@@ -66,22 +68,40 @@ public class ProjectBasicInfo {
     this.additionalNames = additionalNames;
   }
 
-  public ProjectBasicInfo id(String id) {
-    this.id = id;
+  public ProjectBasicInfo description(Text description) {
+    this.description = description;
     return this;
   }
 
    /**
-   * project id
-   * @return id
+   * project description
+   * @return description
   **/
-  @ApiModelProperty(value = "project id")
-  public String getId() {
-    return id;
+  @ApiModelProperty(value = "project description")
+  public Text getDescription() {
+    return description;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setDescription(Text description) {
+    this.description = description;
+  }
+
+  public ProjectBasicInfo externalId(String externalId) {
+    this.externalId = externalId;
+    return this;
+  }
+
+   /**
+   * project external id
+   * @return externalId
+  **/
+  @ApiModelProperty(value = "project external id")
+  public String getExternalId() {
+    return externalId;
+  }
+
+  public void setExternalId(String externalId) {
+    this.externalId = externalId;
   }
 
   public ProjectBasicInfo manager(User manager) {
@@ -131,14 +151,15 @@ public class ProjectBasicInfo {
     }
     ProjectBasicInfo projectBasicInfo = (ProjectBasicInfo) o;
     return Objects.equals(this.additionalNames, projectBasicInfo.additionalNames) &&
-        Objects.equals(this.id, projectBasicInfo.id) &&
+        Objects.equals(this.description, projectBasicInfo.description) &&
+        Objects.equals(this.externalId, projectBasicInfo.externalId) &&
         Objects.equals(this.manager, projectBasicInfo.manager) &&
         Objects.equals(this.name, projectBasicInfo.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(additionalNames, id, manager, name);
+    return Objects.hash(additionalNames, description, externalId, manager, name);
   }
 
 
@@ -148,7 +169,8 @@ public class ProjectBasicInfo {
     sb.append("class ProjectBasicInfo {\n");
     
     sb.append("    additionalNames: ").append(toIndentedString(additionalNames)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    externalId: ").append(toIndentedString(externalId)).append("\n");
     sb.append("    manager: ").append(toIndentedString(manager)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");

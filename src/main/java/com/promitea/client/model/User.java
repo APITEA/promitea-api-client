@@ -23,16 +23,13 @@ import io.swagger.annotations.ApiModelProperty;
  * An user entity
  */
 @ApiModel(description = "An user entity")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-08-05T07:13:22.864Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-20T13:25:47.817Z")
 public class User {
   @SerializedName("email")
   private String email = null;
 
   @SerializedName("firstName")
   private String firstName = null;
-
-  @SerializedName("id")
-  private String id = null;
 
   @SerializedName("lastName")
   private String lastName = null;
@@ -46,7 +43,7 @@ public class User {
    * user email
    * @return email
   **/
-  @ApiModelProperty(required = true, value = "user email")
+  @ApiModelProperty(example = "wilson@promitea.com", required = true, value = "user email")
   public String getEmail() {
     return email;
   }
@@ -64,31 +61,13 @@ public class User {
    * user first name
    * @return firstName
   **/
-  @ApiModelProperty(value = "user first name")
+  @ApiModelProperty(example = "Scott", value = "user first name")
   public String getFirstName() {
     return firstName;
   }
 
   public void setFirstName(String firstName) {
     this.firstName = firstName;
-  }
-
-  public User id(String id) {
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * user id
-   * @return id
-  **/
-  @ApiModelProperty(value = "user id")
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
   }
 
   public User lastName(String lastName) {
@@ -100,7 +79,7 @@ public class User {
    * user last name
    * @return lastName
   **/
-  @ApiModelProperty(value = "user last name")
+  @ApiModelProperty(example = "Wilson", value = "user last name")
   public String getLastName() {
     return lastName;
   }
@@ -121,13 +100,12 @@ public class User {
     User user = (User) o;
     return Objects.equals(this.email, user.email) &&
         Objects.equals(this.firstName, user.firstName) &&
-        Objects.equals(this.id, user.id) &&
         Objects.equals(this.lastName, user.lastName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(email, firstName, id, lastName);
+    return Objects.hash(email, firstName, lastName);
   }
 
 
@@ -138,7 +116,6 @@ public class User {
     
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("}");
     return sb.toString();

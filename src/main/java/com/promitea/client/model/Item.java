@@ -21,28 +21,24 @@ import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.threeten.bp.OffsetDateTime;
 
 /**
  * An item entity
  */
 @ApiModel(description = "An item entity")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-11-13T07:34:05.936Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-20T13:25:47.817Z")
 public class Item {
   @SerializedName("additionalNames")
   private List<Text> additionalNames = null;
 
   @SerializedName("deliveryDate")
-  private OffsetDateTime deliveryDate = null;
+  private String deliveryDate = null;
 
   @SerializedName("description")
   private Text description = null;
 
   @SerializedName("documents")
   private List<Document> documents = null;
-
-  @SerializedName("id")
-  private String id = null;
 
   @SerializedName("items")
   private List<Item> items = null;
@@ -85,21 +81,21 @@ public class Item {
     this.additionalNames = additionalNames;
   }
 
-  public Item deliveryDate(OffsetDateTime deliveryDate) {
+  public Item deliveryDate(String deliveryDate) {
     this.deliveryDate = deliveryDate;
     return this;
   }
 
    /**
-   * delivery date
+   * delivery date in format yyyy-MM-dd
    * @return deliveryDate
   **/
-  @ApiModelProperty(value = "delivery date")
-  public OffsetDateTime getDeliveryDate() {
+  @ApiModelProperty(example = "2020-01-01", value = "delivery date in format yyyy-MM-dd")
+  public String getDeliveryDate() {
     return deliveryDate;
   }
 
-  public void setDeliveryDate(OffsetDateTime deliveryDate) {
+  public void setDeliveryDate(String deliveryDate) {
     this.deliveryDate = deliveryDate;
   }
 
@@ -145,24 +141,6 @@ public class Item {
 
   public void setDocuments(List<Document> documents) {
     this.documents = documents;
-  }
-
-  public Item id(String id) {
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * item id
-   * @return id
-  **/
-  @ApiModelProperty(value = "item id")
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
   }
 
   public Item items(List<Item> items) {
@@ -277,7 +255,6 @@ public class Item {
         Objects.equals(this.deliveryDate, item.deliveryDate) &&
         Objects.equals(this.description, item.description) &&
         Objects.equals(this.documents, item.documents) &&
-        Objects.equals(this.id, item.id) &&
         Objects.equals(this.items, item.items) &&
         Objects.equals(this.manufacturerId, item.manufacturerId) &&
         Objects.equals(this.measureUnit, item.measureUnit) &&
@@ -287,7 +264,7 @@ public class Item {
 
   @Override
   public int hashCode() {
-    return Objects.hash(additionalNames, deliveryDate, description, documents, id, items, manufacturerId, measureUnit, name, quantity);
+    return Objects.hash(additionalNames, deliveryDate, description, documents, items, manufacturerId, measureUnit, name, quantity);
   }
 
 
@@ -300,7 +277,6 @@ public class Item {
     sb.append("    deliveryDate: ").append(toIndentedString(deliveryDate)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    documents: ").append(toIndentedString(documents)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    manufacturerId: ").append(toIndentedString(manufacturerId)).append("\n");
     sb.append("    measureUnit: ").append(toIndentedString(measureUnit)).append("\n");
