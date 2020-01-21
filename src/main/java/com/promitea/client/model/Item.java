@@ -26,8 +26,11 @@ import io.swagger.annotations.ApiModelProperty;
  * An item entity
  */
 @ApiModel(description = "An item entity")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-20T13:25:47.817Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-21T09:05:56.823Z")
 public class Item {
+  @SerializedName("additionalDescriptions")
+  private List<Text> additionalDescriptions = null;
+
   @SerializedName("additionalNames")
   private List<Text> additionalNames = null;
 
@@ -54,6 +57,32 @@ public class Item {
 
   @SerializedName("quantity")
   private BigDecimal quantity = null;
+
+  public Item additionalDescriptions(List<Text> additionalDescriptions) {
+    this.additionalDescriptions = additionalDescriptions;
+    return this;
+  }
+
+  public Item addAdditionalDescriptionsItem(Text additionalDescriptionsItem) {
+    if (this.additionalDescriptions == null) {
+      this.additionalDescriptions = new ArrayList<Text>();
+    }
+    this.additionalDescriptions.add(additionalDescriptionsItem);
+    return this;
+  }
+
+   /**
+   * additional item descriptions
+   * @return additionalDescriptions
+  **/
+  @ApiModelProperty(value = "additional item descriptions")
+  public List<Text> getAdditionalDescriptions() {
+    return additionalDescriptions;
+  }
+
+  public void setAdditionalDescriptions(List<Text> additionalDescriptions) {
+    this.additionalDescriptions = additionalDescriptions;
+  }
 
   public Item additionalNames(List<Text> additionalNames) {
     this.additionalNames = additionalNames;
@@ -251,7 +280,8 @@ public class Item {
       return false;
     }
     Item item = (Item) o;
-    return Objects.equals(this.additionalNames, item.additionalNames) &&
+    return Objects.equals(this.additionalDescriptions, item.additionalDescriptions) &&
+        Objects.equals(this.additionalNames, item.additionalNames) &&
         Objects.equals(this.deliveryDate, item.deliveryDate) &&
         Objects.equals(this.description, item.description) &&
         Objects.equals(this.documents, item.documents) &&
@@ -264,7 +294,7 @@ public class Item {
 
   @Override
   public int hashCode() {
-    return Objects.hash(additionalNames, deliveryDate, description, documents, items, manufacturerId, measureUnit, name, quantity);
+    return Objects.hash(additionalDescriptions, additionalNames, deliveryDate, description, documents, items, manufacturerId, measureUnit, name, quantity);
   }
 
 
@@ -273,6 +303,7 @@ public class Item {
     StringBuilder sb = new StringBuilder();
     sb.append("class Item {\n");
     
+    sb.append("    additionalDescriptions: ").append(toIndentedString(additionalDescriptions)).append("\n");
     sb.append("    additionalNames: ").append(toIndentedString(additionalNames)).append("\n");
     sb.append("    deliveryDate: ").append(toIndentedString(deliveryDate)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");

@@ -25,8 +25,11 @@ import io.swagger.annotations.ApiModelProperty;
  * A project entity
  */
 @ApiModel(description = "A project entity")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-20T13:25:47.817Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-01-21T09:05:56.823Z")
 public class Project {
+  @SerializedName("additionalDescriptions")
+  private List<Text> additionalDescriptions = null;
+
   @SerializedName("additionalNames")
   private List<Text> additionalNames = null;
 
@@ -50,6 +53,32 @@ public class Project {
 
   @SerializedName("templateCode")
   private String templateCode = null;
+
+  public Project additionalDescriptions(List<Text> additionalDescriptions) {
+    this.additionalDescriptions = additionalDescriptions;
+    return this;
+  }
+
+  public Project addAdditionalDescriptionsItem(Text additionalDescriptionsItem) {
+    if (this.additionalDescriptions == null) {
+      this.additionalDescriptions = new ArrayList<Text>();
+    }
+    this.additionalDescriptions.add(additionalDescriptionsItem);
+    return this;
+  }
+
+   /**
+   * additional project descriptions
+   * @return additionalDescriptions
+  **/
+  @ApiModelProperty(value = "additional project descriptions")
+  public List<Text> getAdditionalDescriptions() {
+    return additionalDescriptions;
+  }
+
+  public void setAdditionalDescriptions(List<Text> additionalDescriptions) {
+    this.additionalDescriptions = additionalDescriptions;
+  }
 
   public Project additionalNames(List<Text> additionalNames) {
     this.additionalNames = additionalNames;
@@ -221,7 +250,8 @@ public class Project {
       return false;
     }
     Project project = (Project) o;
-    return Objects.equals(this.additionalNames, project.additionalNames) &&
+    return Objects.equals(this.additionalDescriptions, project.additionalDescriptions) &&
+        Objects.equals(this.additionalNames, project.additionalNames) &&
         Objects.equals(this.description, project.description) &&
         Objects.equals(this.externalId, project.externalId) &&
         Objects.equals(this.manager, project.manager) &&
@@ -233,7 +263,7 @@ public class Project {
 
   @Override
   public int hashCode() {
-    return Objects.hash(additionalNames, description, externalId, manager, name, phases, projectType, templateCode);
+    return Objects.hash(additionalDescriptions, additionalNames, description, externalId, manager, name, phases, projectType, templateCode);
   }
 
 
@@ -242,6 +272,7 @@ public class Project {
     StringBuilder sb = new StringBuilder();
     sb.append("class Project {\n");
     
+    sb.append("    additionalDescriptions: ").append(toIndentedString(additionalDescriptions)).append("\n");
     sb.append("    additionalNames: ").append(toIndentedString(additionalNames)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    externalId: ").append(toIndentedString(externalId)).append("\n");
